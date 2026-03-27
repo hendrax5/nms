@@ -1,0 +1,17 @@
+apiVersion: 1
+datasources:
+  - name: TimescaleDB NMS Metrics
+    uid: timescaledb-nms
+    type: postgres
+    access: proxy
+    url: timescaledb:5432
+    user: metrics_user
+    isDefault: true
+    secureJsonData:
+      password: metrics_pass
+    database: nms_metrics
+    jsonData:
+      database: nms_metrics
+      sslmode: disable
+      postgresVersion: 1500
+      timescaledb: true

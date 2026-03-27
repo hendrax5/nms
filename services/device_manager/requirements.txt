@@ -1,0 +1,10 @@
+fastapi>=0.103.1
+uvicorn>=0.23.2
+pydantic>=2.4.2
+psycopg2-binary>=2.9.9
+PyJWT==2.8.0
+requests==2.31.0
+cryptography==41.0.3
+pika>=1.3.2
+netmiko>=4.2.0
+pysnmp-lextudio>=6.1.1

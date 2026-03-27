@@ -1,0 +1,100 @@
+nms_poller_engine  | 2026-03-27 02:21:56,319 - PollerEngine - INFO - Polled Digta.Sw.MMR (103.172.120.42): Status=UP, Latency=1.96ms
+nms_poller_engine  | 2026-03-27 02:21:56,326 - PollerEngine - INFO - Polled SW-IPT-MMR-P1-RACK8 IPT-03 (10.17.9.5): Status=UP, Latency=2.85ms
+nms_poller_engine  | 2026-03-27 02:21:56,332 - PollerEngine - INFO - Polled Mkr.Lt8 (10.168.2.5): Status=UP, Latency=1.93ms
+nms_poller_engine  | 2026-03-27 02:22:13,460 - PollerEngine - INFO - Selesai memproses iterasi ping perangkat.
+nms_poller_engine  | 2026-03-27 02:22:44,431 - PollerEngine - INFO - Starting polling cycle...
+nms_poller_engine  | 2026-03-27 02:22:44,456 - PollerEngine - INFO - Polled DBN_LAMongan (103.163.36.0): Status=UP, Latency=15.4ms
+nms_poller_engine  | 2026-03-27 02:22:44,460 - PollerEngine - INFO - Polled FAHASA_Core.AS (103.168.254.1): Status=UP, Latency=1.7ms
+nms_poller_engine  | 2026-03-27 02:22:44,470 - PollerEngine - INFO - Polled OLT.MDP-01 (103.162.16.8): Status=UP, Latency=8.67ms
+nms_poller_engine  | 2026-03-27 02:22:44,474 - PollerEngine - INFO - Polled NE8K-JUJUNG.NET-AS134651 (113.192.29.254): Status=UP, Latency=1.21ms
+nms_poller_engine  | 2026-03-27 02:22:44,485 - PollerEngine - INFO - Polled Dist.Mikrotik.MDP (103.162.16.8): Status=UP, Latency=9.01ms
+nms_poller_engine  | 2026-03-27 02:22:45,488 - PollerEngine - INFO - Polled sw.P1.H3C (103.217.224.109): Status=DOWN, Latency=-1.0ms
+nms_poller_engine  | 2026-03-27 02:22:45,494 - PollerEngine - INFO - Polled MDP_MMR.APJII (103.162.16.105): Status=UP, Latency=1.85ms
+nms_poller_engine  | 2026-03-27 02:22:45,498 - PollerEngine - INFO - Polled Digta.Sw.MMR (103.172.120.42): Status=UP, Latency=1.63ms
+nms_poller_engine  | 2026-03-27 02:22:45,502 - PollerEngine - INFO - Polled SW-IPT-MMR-P1-RACK8 IPT-03 (10.17.9.5): Status=UP, Latency=2.21ms
+nms_poller_engine  | 2026-03-27 02:22:45,505 - PollerEngine - INFO - Polled Mkr.Lt8 (10.168.2.5): Status=UP, Latency=0.911ms
+nms_poller_engine  | 2026-03-27 02:23:02,570 - PollerEngine - INFO - Selesai memproses iterasi ping perangkat.
+nms_poller_engine  | 2026-03-27 02:23:33,558 - PollerEngine - INFO - Starting polling cycle...
+nms_poller_engine  | 2026-03-27 02:23:33,582 - PollerEngine - INFO - Polled DBN_LAMongan (103.163.36.0): Status=UP, Latency=15.0ms
+nms_poller_engine  | 2026-03-27 02:23:33,587 - PollerEngine - INFO - Polled FAHASA_Core.AS (103.168.254.1): Status=UP, Latency=2.74ms
+nms_poller_engine  | 2026-03-27 02:23:33,599 - PollerEngine - INFO - Polled OLT.MDP-01 (103.162.16.8): Status=UP, Latency=9.22ms
+nms_poller_engine  | 2026-03-27 02:23:33,613 - PollerEngine - INFO - Polled NE8K-JUJUNG.NET-AS134651 (113.192.29.254): Status=UP, Latency=11.7ms
+nms_poller_engine  | 2026-03-27 02:23:33,624 - PollerEngine - INFO - Polled Dist.Mikrotik.MDP (103.162.16.8): Status=UP, Latency=8.87ms
+nms_poller_engine  | 2026-03-27 02:23:34,628 - PollerEngine - INFO - Polled sw.P1.H3C (103.217.224.109): Status=DOWN, Latency=-1.0ms
+nms_poller_engine  | 2026-03-27 02:23:34,633 - PollerEngine - INFO - Polled MDP_MMR.APJII (103.162.16.105): Status=UP, Latency=1.77ms
+nms_poller_engine  | 2026-03-27 02:23:34,637 - PollerEngine - INFO - Polled Digta.Sw.MMR (103.172.120.42): Status=UP, Latency=1.69ms
+nms_poller_engine  | 2026-03-27 02:23:34,642 - PollerEngine - INFO - Polled SW-IPT-MMR-P1-RACK8 IPT-03 (10.17.9.5): Status=UP, Latency=2.64ms
+nms_poller_engine  | 2026-03-27 02:23:34,645 - PollerEngine - INFO - Polled Mkr.Lt8 (10.168.2.5): Status=UP, Latency=0.805ms
+nms_poller_engine  | 2026-03-27 02:23:52,222 - PollerEngine - INFO - Selesai memproses iterasi ping perangkat.
+nms_poller_engine  | 2026-03-27 02:24:23,211 - PollerEngine - INFO - Starting polling cycle...
+nms_poller_engine  | 2026-03-27 02:24:23,238 - PollerEngine - INFO - Polled DBN_LAMongan (103.163.36.0): Status=UP, Latency=14.9ms
+nms_poller_engine  | 2026-03-27 02:24:23,242 - PollerEngine - INFO - Polled FAHASA_Core.AS (103.168.254.1): Status=UP, Latency=1.64ms
+nms_poller_engine  | 2026-03-27 02:24:23,253 - PollerEngine - INFO - Polled OLT.MDP-01 (103.162.16.8): Status=UP, Latency=8.71ms
+nms_poller_engine  | 2026-03-27 02:24:23,257 - PollerEngine - INFO - Polled NE8K-JUJUNG.NET-AS134651 (113.192.29.254): Status=UP, Latency=2.11ms
+nms_poller_engine  | 2026-03-27 02:24:23,268 - PollerEngine - INFO - Polled Dist.Mikrotik.MDP (103.162.16.8): Status=UP, Latency=8.88ms
+nms_poller_engine  | 2026-03-27 02:24:24,271 - PollerEngine - INFO - Polled sw.P1.H3C (103.217.224.109): Status=DOWN, Latency=-1.0ms
+nms_poller_engine  | 2026-03-27 02:24:24,275 - PollerEngine - INFO - Polled MDP_MMR.APJII (103.162.16.105): Status=UP, Latency=1.54ms
+nms_poller_engine  | 2026-03-27 02:24:24,280 - PollerEngine - INFO - Polled Digta.Sw.MMR (103.172.120.42): Status=UP, Latency=1.63ms
+nms_poller_engine  | 2026-03-27 02:24:24,302 - PollerEngine - INFO - Polled SW-IPT-MMR-P1-RACK8 IPT-03 (10.17.9.5): Status=UP, Latency=19.4ms
+nms_poller_engine  | 2026-03-27 02:24:24,306 - PollerEngine - INFO - Polled Mkr.Lt8 (10.168.2.5): Status=UP, Latency=1.35ms
+nms_poller_engine  | 2026-03-27 02:24:41,430 - PollerEngine - INFO - Selesai memproses iterasi ping perangkat.
+nms_poller_engine  | 2026-03-27 02:25:12,413 - PollerEngine - INFO - Starting polling cycle...
+nms_poller_engine  | 2026-03-27 02:25:12,438 - PollerEngine - INFO - Polled DBN_LAMongan (103.163.36.0): Status=UP, Latency=14.7ms
+nms_poller_engine  | 2026-03-27 02:25:12,441 - PollerEngine - INFO - Polled FAHASA_Core.AS (103.168.254.1): Status=UP, Latency=1.54ms
+nms_poller_engine  | 2026-03-27 02:25:12,452 - PollerEngine - INFO - Polled OLT.MDP-01 (103.162.16.8): Status=UP, Latency=8.81ms
+nms_poller_engine  | 2026-03-27 02:25:12,455 - PollerEngine - INFO - Polled NE8K-JUJUNG.NET-AS134651 (113.192.29.254): Status=UP, Latency=1.18ms
+nms_poller_engine  | 2026-03-27 02:25:12,467 - PollerEngine - INFO - Polled Dist.Mikrotik.MDP (103.162.16.8): Status=UP, Latency=9.13ms
+nms_poller_engine  | 2026-03-27 02:25:13,448 - PollerEngine - INFO - Polled sw.P1.H3C (103.217.224.109): Status=DOWN, Latency=-1.0ms
+nms_poller_engine  | 2026-03-27 02:25:13,452 - PollerEngine - INFO - Polled MDP_MMR.APJII (103.162.16.105): Status=UP, Latency=1.55ms
+nms_poller_engine  | 2026-03-27 02:25:13,456 - PollerEngine - INFO - Polled Digta.Sw.MMR (103.172.120.42): Status=UP, Latency=1.53ms
+nms_poller_engine  | 2026-03-27 02:25:13,460 - PollerEngine - INFO - Polled SW-IPT-MMR-P1-RACK8 IPT-03 (10.17.9.5): Status=UP, Latency=1.99ms
+nms_poller_engine  | 2026-03-27 02:25:13,463 - PollerEngine - INFO - Polled Mkr.Lt8 (10.168.2.5): Status=UP, Latency=0.841ms
+nms_poller_engine  | 2026-03-27 02:25:30,532 - PollerEngine - INFO - Selesai memproses iterasi ping perangkat.
+nms_poller_engine  | 2026-03-27 02:26:01,520 - PollerEngine - INFO - Starting polling cycle...
+nms_poller_engine  | 2026-03-27 02:26:01,546 - PollerEngine - INFO - Polled DBN_LAMongan (103.163.36.0): Status=UP, Latency=14.8ms
+nms_poller_engine  | 2026-03-27 02:26:01,550 - PollerEngine - INFO - Polled FAHASA_Core.AS (103.168.254.1): Status=UP, Latency=1.55ms
+nms_poller_engine  | 2026-03-27 02:26:01,561 - PollerEngine - INFO - Polled OLT.MDP-01 (103.162.16.8): Status=UP, Latency=9.01ms
+nms_poller_engine  | 2026-03-27 02:26:01,564 - PollerEngine - INFO - Polled NE8K-JUJUNG.NET-AS134651 (113.192.29.254): Status=UP, Latency=1.4ms
+nms_poller_engine  | 2026-03-27 02:26:01,575 - PollerEngine - INFO - Polled Dist.Mikrotik.MDP (103.162.16.8): Status=UP, Latency=8.9ms
+nms_poller_engine  | 2026-03-27 02:26:02,578 - PollerEngine - INFO - Polled sw.P1.H3C (103.217.224.109): Status=DOWN, Latency=-1.0ms
+nms_poller_engine  | 2026-03-27 02:26:02,584 - PollerEngine - INFO - Polled MDP_MMR.APJII (103.162.16.105): Status=UP, Latency=1.59ms
+nms_poller_engine  | 2026-03-27 02:26:02,588 - PollerEngine - INFO - Polled Digta.Sw.MMR (103.172.120.42): Status=UP, Latency=1.63ms
+nms_poller_engine  | 2026-03-27 02:26:02,593 - PollerEngine - INFO - Polled SW-IPT-MMR-P1-RACK8 IPT-03 (10.17.9.5): Status=UP, Latency=2.4ms
+nms_poller_engine  | 2026-03-27 02:26:02,596 - PollerEngine - INFO - Polled Mkr.Lt8 (10.168.2.5): Status=UP, Latency=1.39ms
+nms_poller_engine  | 2026-03-27 02:26:20,206 - PollerEngine - INFO - Selesai memproses iterasi ping perangkat.
+nms_poller_engine  | 2026-03-27 02:26:51,191 - PollerEngine - INFO - Starting polling cycle...
+nms_poller_engine  | 2026-03-27 02:26:51,218 - PollerEngine - INFO - Polled DBN_LAMongan (103.163.36.0): Status=UP, Latency=14.7ms
+nms_poller_engine  | 2026-03-27 02:26:51,222 - PollerEngine - INFO - Polled FAHASA_Core.AS (103.168.254.1): Status=UP, Latency=1.45ms
+nms_poller_engine  | 2026-03-27 02:26:51,234 - PollerEngine - INFO - Polled OLT.MDP-01 (103.162.16.8): Status=UP, Latency=9.29ms
+nms_poller_engine  | 2026-03-27 02:26:51,238 - PollerEngine - INFO - Polled NE8K-JUJUNG.NET-AS134651 (113.192.29.254): Status=UP, Latency=2.18ms
+nms_poller_engine  | 2026-03-27 02:26:51,249 - PollerEngine - INFO - Polled Dist.Mikrotik.MDP (103.162.16.8): Status=UP, Latency=8.82ms
+nms_poller_engine  | 2026-03-27 02:26:52,252 - PollerEngine - INFO - Polled sw.P1.H3C (103.217.224.109): Status=DOWN, Latency=-1.0ms
+nms_poller_engine  | 2026-03-27 02:26:52,257 - PollerEngine - INFO - Polled MDP_MMR.APJII (103.162.16.105): Status=UP, Latency=1.84ms
+nms_poller_engine  | 2026-03-27 02:26:52,262 - PollerEngine - INFO - Polled Digta.Sw.MMR (103.172.120.42): Status=UP, Latency=2.0ms
+nms_poller_engine  | 2026-03-27 02:26:52,267 - PollerEngine - INFO - Polled SW-IPT-MMR-P1-RACK8 IPT-03 (10.17.9.5): Status=UP, Latency=2.49ms
+nms_poller_engine  | 2026-03-27 02:26:52,271 - PollerEngine - INFO - Polled Mkr.Lt8 (10.168.2.5): Status=UP, Latency=1.33ms
+nms_poller_engine  | 2026-03-27 02:27:09,364 - PollerEngine - INFO - Selesai memproses iterasi ping perangkat.
+nms_poller_engine  | 2026-03-27 02:27:40,354 - PollerEngine - INFO - Starting polling cycle...
+nms_poller_engine  | 2026-03-27 02:27:40,380 - PollerEngine - INFO - Polled DBN_LAMongan (103.163.36.0): Status=UP, Latency=15.0ms
+nms_poller_engine  | 2026-03-27 02:27:40,384 - PollerEngine - INFO - Polled FAHASA_Core.AS (103.168.254.1): Status=UP, Latency=1.56ms
+nms_poller_engine  | 2026-03-27 02:27:40,396 - PollerEngine - INFO - Polled OLT.MDP-01 (103.162.16.8): Status=UP, Latency=9.44ms
+nms_poller_engine  | 2026-03-27 02:27:40,399 - PollerEngine - INFO - Polled NE8K-JUJUNG.NET-AS134651 (113.192.29.254): Status=UP, Latency=1.28ms
+nms_poller_engine  | 2026-03-27 02:27:40,409 - PollerEngine - INFO - Polled Dist.Mikrotik.MDP (103.162.16.8): Status=UP, Latency=8.77ms
+nms_poller_engine  | 2026-03-27 02:27:41,412 - PollerEngine - INFO - Polled sw.P1.H3C (103.217.224.109): Status=DOWN, Latency=-1.0ms
+nms_poller_engine  | 2026-03-27 02:27:41,417 - PollerEngine - INFO - Polled MDP_MMR.APJII (103.162.16.105): Status=UP, Latency=1.74ms
+nms_poller_engine  | 2026-03-27 02:27:41,420 - PollerEngine - INFO - Polled Digta.Sw.MMR (103.172.120.42): Status=UP, Latency=1.5ms
+nms_poller_engine  | 2026-03-27 02:27:41,424 - PollerEngine - INFO - Polled SW-IPT-MMR-P1-RACK8 IPT-03 (10.17.9.5): Status=UP, Latency=1.76ms
+nms_poller_engine  | 2026-03-27 02:27:41,427 - PollerEngine - INFO - Polled Mkr.Lt8 (10.168.2.5): Status=UP, Latency=1.0ms
+nms_poller_engine  | 2026-03-27 02:27:58,464 - PollerEngine - INFO - Selesai memproses iterasi ping perangkat.
+nms_poller_engine  | 2026-03-27 02:28:29,452 - PollerEngine - INFO - Starting polling cycle...
+nms_poller_engine  | 2026-03-27 02:28:29,477 - PollerEngine - INFO - Polled DBN_LAMongan (103.163.36.0): Status=UP, Latency=14.6ms
+nms_poller_engine  | 2026-03-27 02:28:29,481 - PollerEngine - INFO - Polled FAHASA_Core.AS (103.168.254.1): Status=UP, Latency=1.51ms
+nms_poller_engine  | 2026-03-27 02:28:29,493 - PollerEngine - INFO - Polled OLT.MDP-01 (103.162.16.8): Status=UP, Latency=9.24ms
+nms_poller_engine  | 2026-03-27 02:28:29,497 - PollerEngine - INFO - Polled NE8K-JUJUNG.NET-AS134651 (113.192.29.254): Status=UP, Latency=1.39ms
+nms_poller_engine  | 2026-03-27 02:28:29,508 - PollerEngine - INFO - Polled Dist.Mikrotik.MDP (103.162.16.8): Status=UP, Latency=9.21ms
+nms_poller_engine  | 2026-03-27 02:28:30,510 - PollerEngine - INFO - Polled sw.P1.H3C (103.217.224.109): Status=DOWN, Latency=-1.0ms
+nms_poller_engine  | 2026-03-27 02:28:31,514 - PollerEngine - INFO - Polled MDP_MMR.APJII (103.162.16.105): Status=DOWN, Latency=-1.0ms
+nms_poller_engine  | 2026-03-27 02:28:31,519 - PollerEngine - INFO - Polled Digta.Sw.MMR (103.172.120.42): Status=UP, Latency=1.99ms
+nms_poller_engine  | 2026-03-27 02:28:31,522 - PollerEngine - INFO - Polled SW-IPT-MMR-P1-RACK8 IPT-03 (10.17.9.5): Status=UP, Latency=2.07ms
+nms_poller_engine  | 2026-03-27 02:28:31,525 - PollerEngine - INFO - Polled Mkr.Lt8 (10.168.2.5): Status=UP, Latency=1.11ms
+nms_poller_engine  | 2026-03-27 02:28:48,549 - PollerEngine - INFO - Selesai memproses iterasi ping perangkat.

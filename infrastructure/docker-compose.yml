@@ -1,0 +1,281 @@
+version: '3.8'
+
+services:
+  # Traefik API Gateway
+  traefik:
+    image: traefik:v2.10
+    container_name: nms_traefik
+    restart: unless-stopped
+    command:
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
+    ports:
+      - "80:80"        # HTTP Proxy
+      - "8080:8080"    # Traefik Dashboard
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    networks:
+      - nms_network
+
+  # Identity & Access Management (Keycloak)
+  keycloak:
+    image: quay.io/keycloak/keycloak:22.0.1
+    container_name: nms_keycloak
+    restart: unless-stopped
+    environment:
+      KC_DB: postgres
+      KC_DB_URL: jdbc:postgresql://postgres:5432/${POSTGRES_DB:-nms_db}
+      KC_DB_USERNAME: ${POSTGRES_USER:-admin}
+      KC_DB_PASSWORD: ${POSTGRES_PASSWORD:-admin123}
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+    command: start-dev --import-realm
+    ports:
+      - "8081:8080"
+    volumes:
+      - ./keycloak/realm-export.json:/opt/keycloak/data/import/realm-export.json
+    networks:
+      - nms_network
+    depends_on:
+      postgres:
+        condition: service_healthy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.keycloak.rule=PathPrefix(`/auth`)"
+      - "traefik.http.services.keycloak.loadbalancer.server.port=8080"
+
+  # Database Relasional: Users & Inventory
+  postgres:
+    image: postgres:15-alpine
+    container_name: nms_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-admin}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-admin123}
+      POSTGRES_DB: ${POSTGRES_DB:-nms_db}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - nms_network
+    healthcheck:
+      test: ["CMD", "pg_isready", "-q", "-d", "${POSTGRES_DB:-nms_db}", "-U", "${POSTGRES_USER:-admin}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Time-Series Database: Metrics / Telemetry
+  timescaledb:
+    image: timescale/timescaledb:latest-pg15
+    container_name: nms_timescaledb
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${TSDB_USER:-metrics_user}
+      POSTGRES_PASSWORD: ${TSDB_PASSWORD:-metrics_pass}
+      POSTGRES_DB: ${TSDB_NAME:-nms_metrics}
+    ports:
+      - "5433:5432" # Menghindari konflik dengan postgres utama
+    volumes:
+      - timescaledb_data:/var/lib/postgresql/data
+    networks:
+      - nms_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${TSDB_USER:-metrics_user}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Caching & Session
+  redis:
+    image: redis:7-alpine
+    container_name: nms_redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - nms_network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Message Broker: Async Communication
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: nms_rabbitmq
+    restart: unless-stopped
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_USER:-admin}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASSWORD:-admin123}
+    ports:
+      - "5672:5672"   # Protokol AMQP
+      - "15672:15672" # Management UI
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+    networks:
+      - nms_network
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "check_port_connectivity"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Device Manager Service API
+  device-manager:
+    build: 
+      context: ../services/device_manager
+    container_name: nms_device_manager
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    networks:
+      - nms_network
+    depends_on:
+      postgres:
+        condition: service_healthy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.device-manager.rule=PathPrefix(`/api/devices`)"
+      - "traefik.http.middlewares.device-manager-strip.stripprefix.prefixes=/api"
+      - "traefik.http.routers.device-manager.middlewares=device-manager-strip"
+      - "traefik.http.services.device-manager.loadbalancer.server.port=8000"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Config Backup Worker Service
+  config-backup-worker:
+    build:
+      context: ../services/config_backup_worker
+    container_name: nms_config_backup
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      - DB_HOST=postgres
+      - DB_USER=${POSTGRES_USER:-admin}
+      - DB_PASS=${POSTGRES_PASSWORD:-admin123}
+      - DB_NAME=${POSTGRES_DB:-nms_db}
+    volumes:
+      - ./backups:/app/backups
+    networks:
+      - nms_network
+
+  # Poller Engine Service
+  poller-engine:
+    build:
+      context: ../services/poller_engine
+    container_name: nms_poller_engine
+    restart: unless-stopped
+    networks:
+      - nms_network
+    depends_on:
+      device-manager:
+        condition: service_healthy
+
+  # Syslog & Trap Receiver Service
+  syslog-trap-receiver:
+    build:
+      context: ../services/syslog_trap_receiver
+    container_name: nms_syslog_receiver
+    restart: unless-stopped
+    ports:
+      - "514:514/udp"
+      - "162:162/udp"
+    environment:
+      - DB_HOST=timescaledb
+      - DB_USER=${TSDB_USER:-metrics_user}
+      - DB_PASS=${TSDB_PASSWORD:-metrics_pass}
+      - DB_NAME=${TSDB_NAME:-nms_metrics}
+    networks:
+      - nms_network
+    depends_on:
+      timescaledb:
+        condition: service_healthy
+
+  # Alert Manager Service
+  alert-manager:
+    build:
+      context: ../services/alert_manager
+    container_name: nms_alert_manager
+    restart: unless-stopped
+    environment:
+      RABBITMQ_HOST: rabbitmq
+      RABBITMQ_USER: ${RABBITMQ_USER:-admin}
+      RABBITMQ_PASSWORD: ${RABBITMQ_PASSWORD:-admin123}
+    networks:
+      - nms_network
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+
+  # Frontend Web UI (React/Vite)
+  frontend:
+    build:
+      context: ../services/frontend
+    container_name: nms_frontend
+    restart: unless-stopped
+    ports:
+      - "5173:5173"
+    volumes:
+      - ../services/frontend:/app
+      - /app/node_modules
+    networks:
+      - nms_network
+
+  # Observability: Prometheus
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: nms_prometheus
+    restart: unless-stopped
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+    ports:
+      - "9090:9090"
+    networks:
+      - nms_network
+
+  # Observability: Grafana
+  grafana:
+    image: grafana/grafana:latest
+    container_name: nms_grafana
+    restart: unless-stopped
+    environment:
+      - 'GF_SECURITY_ADMIN_USER=admin'
+      - 'GF_SECURITY_ADMIN_PASSWORD=admin'
+      - 'GF_SECURITY_ALLOW_EMBEDDING=true'
+      - 'GF_AUTH_ANONYMOUS_ENABLED=true'
+      - 'GF_AUTH_ANONYMOUS_ORG_NAME=Main Org.'
+      - 'GF_AUTH_ANONYMOUS_ORG_ROLE=Viewer'
+    ports:
+      - "3010:3000"
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./grafana/provisioning:/etc/grafana/provisioning
+    networks:
+      - nms_network
+
+volumes:
+  postgres_data:
+  timescaledb_data:
+  redis_data:
+  rabbitmq_data:
+  prometheus_data:
+  grafana_data:
+
+networks:
+  nms_network:
+    name: nms_network
+    driver: bridge

@@ -1,0 +1,43 @@
+# Dependencies
+node_modules/
+.venv/
+venv/
+env/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Environment Variables
+.env
+.env.production
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Docker Infrastructure Data
+infrastructure/postgres_data/
+infrastructure/timescaledb_data/
+infrastructure/redis_data/
+infrastructure/rabbitmq_data/
+infrastructure/grafana_data/
+infrastructure/prometheus_data/
+infrastructure/prometheus/data/
+infrastructure/backups/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build Outputs
+services/frontend/dist/
+services/frontend/build/
+
+# OS specific
+.DS_Store
+Thumbs.db
