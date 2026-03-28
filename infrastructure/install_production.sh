@@ -79,7 +79,7 @@ TIMESCALEDB_URL=postgresql://metrics_user:${POSTGRES_PASS}@timescaledb:5432/nms_
 KC_BOOTSTRAP_ADMIN_USERNAME=nexus_commander
 KC_BOOTSTRAP_ADMIN_PASSWORD=${KEYCLOAK_ADMIN_PASS}
 KC_DB=postgres
-KC_DB_URL=jdbc:postgresql://postgres:5432/keycloak_db
+KC_DB_URL=jdbc:postgresql://postgres:5432/nms_db
 KC_DB_USERNAME=nexus_admin
 KC_DB_PASSWORD=${POSTGRES_PASS}
 KC_HOSTNAME_URL=http://${SERVER_DOMAIN}/auth
@@ -96,7 +96,7 @@ GF_SECURITY_ADMIN_USER=nexus_grafana
 GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_ADMIN_PASS}
 GF_DATABASE_TYPE=postgres
 GF_DATABASE_HOST=postgres:5432
-GF_DATABASE_NAME=grafana_db
+GF_DATABASE_NAME=nms_db
 GF_DATABASE_USER=nexus_admin
 GF_DATABASE_PASSWORD=${POSTGRES_PASS}
 
