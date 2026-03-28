@@ -7,7 +7,7 @@ import './index.css';
 
 // Inisialisasi Keycloak Client Config
 const keycloak = new Keycloak({
-  url: 'http://localhost:8081', 
+  url: window.location.origin + '/auth', 
   realm: 'nms_realm',
   clientId: 'react_frontend'
 });
@@ -830,7 +830,7 @@ function MainApp() {
             <div style={{ flex: 1, border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
               {telemetryTab === 'ping' ? (
                 <iframe 
-                  src={`http://localhost:3010/d-solo/nexus-nms-core/nexus-nms-network-health?orgId=1&theme=dark&panelId=1&refresh=5s&from=now-${timeRange}&to=now&var-target=${metricsDevice.id}`} 
+                  src={`${window.location.origin}/grafana/d-solo/nexus-nms-core/nexus-nms-network-health?orgId=1&theme=dark&panelId=1&refresh=5s&from=now-${timeRange}&to=now&var-target=${metricsDevice.id}`} 
                   width="100%" height="100%" frameBorder="0" style={{ display: 'block', background: '#000' }} title="Ping Latency">
                 </iframe>
               ) : (
@@ -841,13 +841,13 @@ function MainApp() {
                        <>
                          <div style={{ width: '75%', borderRight: '1px solid rgba(255,255,255,0.1)', background: '#000' }}>
                            <iframe 
-                             src={`http://localhost:3010/d-solo/nexus-nms-advanced/nexus-nms-advanced-telemetry?orgId=1&theme=dark&panelId=2&refresh=10s&from=now-${timeRange}&to=now&var-target=${metricsDevice.id}&var-interface=${encodeURIComponent(selectedInterface)}`} 
+                             src={`${window.location.origin}/grafana/d-solo/nexus-nms-advanced/nexus-nms-advanced-telemetry?orgId=1&theme=dark&panelId=2&refresh=10s&from=now-${timeRange}&to=now&var-target=${metricsDevice.id}&var-interface=${encodeURIComponent(selectedInterface)}`} 
                              width="100%" height="100%" frameBorder="0" style={{ display: 'block' }} title="Interface Traffic">
                            </iframe>
                          </div>
                          <div style={{ width: '25%', background: '#000' }}>
                            <iframe 
-                             src={`http://localhost:3010/d-solo/nexus-nms-advanced/nexus-nms-advanced-telemetry?orgId=1&theme=dark&panelId=1&refresh=10s&from=now-${timeRange}&to=now&var-target=${metricsDevice.id}`} 
+                             src={`${window.location.origin}/grafana/d-solo/nexus-nms-advanced/nexus-nms-advanced-telemetry?orgId=1&theme=dark&panelId=1&refresh=10s&from=now-${timeRange}&to=now&var-target=${metricsDevice.id}`} 
                              width="100%" height="100%" frameBorder="0" style={{ display: 'block' }} title="CPU Gauge">
                            </iframe>
                          </div>
