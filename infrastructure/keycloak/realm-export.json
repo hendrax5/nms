@@ -1,6 +1,7 @@
 {
   "realm": "nms_realm",
   "enabled": true,
+  "sslRequired": "none",
   "users": [
     {
       "username": "admin",
