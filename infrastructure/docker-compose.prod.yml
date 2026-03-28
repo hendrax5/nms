@@ -38,6 +38,7 @@ services:
       KC_HOSTNAME_ADMIN_URL: ${KC_HOSTNAME_ADMIN_URL}
       KC_HOSTNAME_STRICT: "false"
       KC_PROXY: "edge"
+      KC_HTTP_RELATIVE_PATH: "/auth"
     command: start --import-realm --optimized
     volumes:
       - ./keycloak/realm-export.json:/opt/keycloak/data/import/realm-export.json:ro

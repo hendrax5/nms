@@ -35,6 +35,16 @@ fi
 
 echo "[+] Meracik sandi rahasia mematikan untuk PostgreSQL, Keycloak, dan RabbitMQ..."
 
+# Meminta IP Publik atau Domain dari Pengguna
+echo ""
+echo "------------------------------------------------------------"
+read -p "[?] Masukkan IP Publik Remote atau Domain Server INI (contoh: 192.168.1.100 atau nms.corp.com): " SERVER_DOMAIN
+if [ -z "$SERVER_DOMAIN" ]; then
+    SERVER_DOMAIN="localhost"
+    echo "[-] Domain kosong. Jatuh kembali menggunakan 'localhost'."
+fi
+echo "------------------------------------------------------------"
+
 # Generate sandi 16 karakter acak
 POSTGRES_PASS=$(openssl rand -hex 16)
 KEYCLOAK_ADMIN_PASS=$(openssl rand -hex 12)
@@ -72,8 +82,8 @@ KC_DB=postgres
 KC_DB_URL=jdbc:postgresql://postgres:5432/keycloak_db
 KC_DB_USERNAME=nexus_admin
 KC_DB_PASSWORD=${POSTGRES_PASS}
-KC_HOSTNAME_URL=http://localhost:8080 # Ganti ke IP Server/Domain jika di-publish!
-KC_HOSTNAME_ADMIN_URL=http://localhost:8080
+KC_HOSTNAME_URL=http://${SERVER_DOMAIN}/auth
+KC_HOSTNAME_ADMIN_URL=http://${SERVER_DOMAIN}/auth
 KC_HOSTNAME_STRICT=false
 
 # === RabbitMQ (Message Broker & Event Bus) ===
