@@ -1047,7 +1047,7 @@ function MainApp() {
             {/* Grafana Live Telemetry Embed */}
             <div className="glass-panel" style={{ marginBottom: '40px', overflow: 'hidden', padding: 0 }}>
               <iframe 
-                src="http://localhost:3010/d-solo/nexus-nms-core/nexus-nms-network-health?orgId=1&theme=dark&panelId=1&refresh=10s&from=now-6h&to=now%2B6h" 
+                src={`${window.location.origin}/grafana/d-solo/nexus-nms-core/nexus-nms-network-health?orgId=1&theme=dark&panelId=1&refresh=10s&from=now-6h&to=now%2B6h`} 
                 width="100%" 
                 height="350" 
                 frameBorder="0" 
