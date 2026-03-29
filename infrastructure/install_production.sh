@@ -86,6 +86,7 @@ KC_DB_PASSWORD=${POSTGRES_PASS}
 KC_HOSTNAME_URL=http://${SERVER_DOMAIN}/auth
 KC_HOSTNAME_ADMIN_URL=http://${SERVER_DOMAIN}/auth
 KC_HOSTNAME_STRICT=false
+GF_SERVER_ROOT_URL=http://${SERVER_DOMAIN}/grafana/
 
 # === RabbitMQ (Message Broker & Event Bus) ===
 RABBITMQ_DEFAULT_USER=nexus_mq
@@ -93,6 +94,7 @@ RABBITMQ_DEFAULT_PASS=${RABBITMQ_PASS}
 RABBITMQ_URL=amqp://nexus_mq:${RABBITMQ_PASS}@rabbitmq:5672/
 
 # === Grafana (Observability Dashboard) ===
+GF_SERVER_ROOT_URL=http://${SERVER_DOMAIN}/grafana/
 GF_SECURITY_ADMIN_USER=nexus_grafana
 GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_ADMIN_PASS}
 GF_DATABASE_TYPE=postgres
