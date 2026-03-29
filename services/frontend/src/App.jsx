@@ -322,10 +322,13 @@ function MainApp() {
   };
 
   const handleExportDevices = () => {
-    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(devices, null, 2));
+    if (!devices || devices.length === 0) return alert("Tidak ada perangkat untuk diekspor.");
+    const headers = ["hostname", "ip_address", "vendor", "type", "ssh_user", "ssh_pass", "ssh_port", "snmp_community", "snmp_port", "ssh_protocol"];
+    const rows = devices.map(d => headers.map(h => d[h] || '').join(','));
+    const csvContent = "data:text/csv;charset=utf-8," + headers.join(',') + "\n" + rows.join('\n');
     const downloadAnchorNode = document.createElement('a');
-    downloadAnchorNode.setAttribute("href", dataStr);
-    downloadAnchorNode.setAttribute("download", "nms_devices_export.json");
+    downloadAnchorNode.setAttribute("href", encodeURI(csvContent));
+    downloadAnchorNode.setAttribute("download", "nms_devices_export.csv");
     document.body.appendChild(downloadAnchorNode);
     downloadAnchorNode.click();
     downloadAnchorNode.remove();
@@ -337,10 +340,24 @@ function MainApp() {
     const reader = new FileReader();
     reader.onload = async (event) => {
       try {
-        const imported = JSON.parse(event.target.result);
-        if (!Array.isArray(imported)) throw new Error("Format JSON harus berupa Array.");
+        const text = event.target.result;
+        const lines = text.split('\n').filter(l => l.trim() !== '');
+        if (lines.length < 2) throw new Error("CSV kosong atau tidak ada data baris.");
+        
+        const headers = lines[0].split(',').map(h => h.trim().toLowerCase());
+        const imported = [];
+        for (let i = 1; i < lines.length; i++) {
+          const vals = lines[i].split(',');
+          let obj = {};
+          headers.forEach((h, idx) => { obj[h] = vals[idx]?.trim() || ''; });
+          if(obj.ip_address) imported.push(obj);
+        }
+
         let successCount = 0;
         for (const dev of imported) {
+          if(dev.ssh_port) dev.ssh_port = parseInt(dev.ssh_port);
+          if(dev.snmp_port) dev.snmp_port = parseInt(dev.snmp_port);
+          
           await fetch('/api/devices/', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${keycloak.token}` },
@@ -348,10 +365,10 @@ function MainApp() {
           });
           successCount++;
         }
-        alert(`Berhasil mengimpor ${successCount} perangkat dari File JSON!`);
+        alert(`Berhasil mengimpor ${successCount} perangkat dari File CSV!`);
         fetchDevices();
       } catch (err) {
-        alert("Gagal impor: " + err.message);
+        alert("Gagal impor CSV: " + err.message);
       }
     };
     reader.readAsText(file);
@@ -1070,12 +1087,12 @@ function MainApp() {
                 <div style={{ display: 'flex', gap: '8px' }}>
                   {isAdmin && (
                     <>
-                      <input type="file" id="import-json" style={{display: 'none'}} accept=".json" onChange={handleImportDevices} />
-                      <button className="btn-outline" onClick={() => document.getElementById('import-json').click()} title="Import JSON" style={{ width: 'auto', padding: '8px 16px', background: 'transparent', border: '1px solid var(--border)', color: 'white', cursor: 'pointer', borderRadius: '4px' }}>
-                        📥 Import
+                      <input type="file" id="import-json" style={{display: 'none'}} accept=".csv" onChange={handleImportDevices} />
+                      <button className="btn-outline" onClick={() => document.getElementById('import-json').click()} title="Import CSV" style={{ width: 'auto', padding: '8px 16px', background: 'transparent', border: '1px solid var(--border)', color: 'white', cursor: 'pointer', borderRadius: '4px' }}>
+                        📥 Import CSV
                       </button>
-                      <button className="btn-outline" onClick={handleExportDevices} title="Export JSON" style={{ width: 'auto', padding: '8px 16px', background: 'transparent', border: '1px solid var(--border)', color: 'white', cursor: 'pointer', borderRadius: '4px' }}>
-                        📤 Export
+                      <button className="btn-outline" onClick={handleExportDevices} title="Export CSV" style={{ width: 'auto', padding: '8px 16px', background: 'transparent', border: '1px solid var(--border)', color: 'white', cursor: 'pointer', borderRadius: '4px' }}>
+                        📤 Export CSV
                       </button>
                       <button className="btn-primary" style={{ width: 'auto', padding: '8px 16px', display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer', background: 'var(--success)', borderColor: 'var(--success)' }} onClick={() => setShowDiscoveryModal(true)}>
                         <span>📡</span> Subnet Auto-Discovery
