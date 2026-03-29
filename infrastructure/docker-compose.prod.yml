@@ -139,6 +139,10 @@ services:
     restart: always
     environment:
       DATABASE_URL: ${DATABASE_URL}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+      DB_HOST: "postgres"
       SECRET_KEY: ${SECRET_KEY}
       KEYCLOAK_URL: "http://keycloak:8080/auth"
     networks:
@@ -191,6 +195,16 @@ services:
     depends_on:
       device-manager:
         condition: service_healthy
+    environment:
+      DB_HOST: postgres
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+      TSDB_USER: ${TIMESCALEDB_USER}
+      TSDB_PASSWORD: ${TIMESCALEDB_PASSWORD}
+      TSDB_NAME: ${TIMESCALEDB_DB}
+      RABBITMQ_USER: ${RABBITMQ_DEFAULT_USER}
+      RABBITMQ_PASSWORD: ${RABBITMQ_DEFAULT_PASS}
     deploy:
       resources:
         limits:
