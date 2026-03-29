@@ -19,6 +19,7 @@ services:
       - frontend
       - device-manager
       - keycloak
+      - grafana
 
   # -----------------------------------------------------------------
   # 2. IDENTITY & ACCESS MANAGEMENT (KEYCLOAK PRODUCTION)
@@ -38,6 +39,7 @@ services:
       KC_HOSTNAME_ADMIN_URL: ${KC_HOSTNAME_ADMIN_URL}
       KC_HOSTNAME_STRICT: "false"
       KC_PROXY: "edge"
+      KC_HTTP_HOST: "0.0.0.0"
       KC_HTTP_RELATIVE_PATH: "/auth"
     command: start-dev --import-realm
     volumes:
