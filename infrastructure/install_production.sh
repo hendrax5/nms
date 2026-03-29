@@ -38,7 +38,8 @@ echo "[+] Meracik sandi rahasia mematikan untuk PostgreSQL, Keycloak, dan Rabbit
 # Meminta IP Publik atau Domain dari Pengguna
 echo ""
 echo "------------------------------------------------------------"
-read -p "[?] Masukkan IP Publik Remote atau Domain Server INI (contoh: 192.168.1.100 atau nms.corp.com): " SERVER_DOMAIN
+read -p "[?] Masukkan IP Publik Remote atau Domain Server INI (contoh: 192.168.1.100 atau nms.corp.com): " INPUT_DOMAIN
+SERVER_DOMAIN=$(echo "$INPUT_DOMAIN" | tr -d '\r' | xargs)
 if [ -z "$SERVER_DOMAIN" ]; then
     SERVER_DOMAIN="localhost"
     echo "[-] Domain kosong. Jatuh kembali menggunakan 'localhost'."
@@ -106,6 +107,9 @@ ALGORITHM=${ALGORITHM}
 ACCESS_TOKEN_EXPIRE_MINUTES=${ACCESS_TOKEN_EXPIRE_MINUTES}
 
 EOF
+
+# Hapus CRLF Windows jika ada
+sed -i 's/\r$//' $ENV_FILE 2>/dev/null || true
 
 echo "[+] Berkas .env.production telah berhasil disegel."
 echo "------------------------------------------------------------"
