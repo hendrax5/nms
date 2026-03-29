@@ -398,7 +398,7 @@ function MainApp() {
     setCompareIds([]);
     setComplianceResult(null);
     setViewConfigData(null);
-    fetch(`/api/config/history/${deviceId}`, { headers: { 'Authorization': `Bearer ${keycloak.token}` } })
+    fetch(`/api/devices/${deviceId}/backups`, { headers: { 'Authorization': `Bearer ${keycloak.token}` } })
       .then(async (res) => {
         if (!res.ok) throw new Error(await res.text());
         return res.json();
@@ -417,7 +417,7 @@ function MainApp() {
   };
 
   const handleTriggerBackup = (deviceId) => {
-    fetch(`/api/config/backup/${deviceId}`, { method: 'POST', headers: { 'Authorization': `Bearer ${keycloak.token}` } })
+    fetch(`/api/devices/${deviceId}/backups/trigger`, { method: 'POST', headers: { 'Authorization': `Bearer ${keycloak.token}` } })
       .then(res => res.json())
       .then(data => alert(data.message))
       .catch(err => alert("Gagal trigger backup: " + err))
@@ -436,7 +436,7 @@ function MainApp() {
       alert("Pilih tepat 2 konfigurasi untuk dibandingkan (Checklist).");
       return;
     }
-    fetch(`/api/config/compare`, {
+    fetch(`/api/devices/backups/compare`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${keycloak.token}` },
       body: JSON.stringify({ config_id_1: compareIds[0], config_id_2: compareIds[1] })
