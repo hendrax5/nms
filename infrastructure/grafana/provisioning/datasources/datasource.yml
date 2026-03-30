@@ -8,7 +8,7 @@ datasources:
     user: metrics_user
     isDefault: true
     secureJsonData:
-      password: metrics_pass
+      password: ${TIMESCALEDB_PASSWORD}
     database: nms_metrics
     jsonData:
       database: nms_metrics
