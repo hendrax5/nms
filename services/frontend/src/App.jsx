@@ -419,7 +419,7 @@ function MainApp() {
   const handleTriggerBackup = (deviceId) => {
     fetch(`/api/devices/${deviceId}/backups/trigger`, { method: 'POST', headers: { 'Authorization': `Bearer ${keycloak.token}` } })
       .then(res => res.json())
-      .then(data => alert(data.message))
+      .then(data => alert(data.message || data.detail || JSON.stringify(data)))
       .catch(err => alert("Gagal trigger backup: " + err))
       .finally(() => {
          // Auto-refresh config history

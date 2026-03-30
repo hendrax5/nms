@@ -145,6 +145,9 @@ services:
       DB_HOST: "postgres"
       SECRET_KEY: ${SECRET_KEY}
       KEYCLOAK_URL: "http://keycloak:8080/auth"
+      TIMESCALEDB_USER: ${TIMESCALEDB_USER}
+      TIMESCALEDB_PASSWORD: ${TIMESCALEDB_PASSWORD}
+      TIMESCALEDB_DB: ${TIMESCALEDB_DB}
     networks:
       - nms_prod_network
     depends_on:

@@ -71,6 +71,7 @@ def get_pg_conn():
                     time TIMESTAMPTZ NOT NULL,
                     device_id TEXT NOT NULL,
                     interface_name TEXT NOT NULL,
+                    interface_alias TEXT,
                     rx_bytes BIGINT,
                     tx_bytes BIGINT
                 );
@@ -78,6 +79,10 @@ def get_pg_conn():
             cur.execute("""
                 SELECT create_hypertable('interface_metrics', 'time', if_not_exists => TRUE);
             """)
+            try:
+                cur.execute("ALTER TABLE interface_metrics ADD COLUMN IF NOT EXISTS interface_alias TEXT;")
+            except Exception:
+                pass
         logger.info("Connected and synced schema (Phase 18) to TimescaleDB.")
     except Exception as e:
         logger.error(f"Postgres connection failed: {e}")

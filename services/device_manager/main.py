@@ -57,6 +57,7 @@ async def lifespan(app: FastAPI):
                     ssh_port INTEGER DEFAULT 22,
                     ssh_protocol VARCHAR(50) DEFAULT 'ssh',
                     thresholds JSONB DEFAULT '{}'::jsonb,
+                    sensor_filters JSONB DEFAULT '{}'::jsonb,
                     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
                 )
             ''')
